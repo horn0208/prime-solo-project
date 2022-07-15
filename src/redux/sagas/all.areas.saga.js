@@ -11,7 +11,7 @@ function* fetchAllAreas(){
         const areas = yield axios.get('/api/areas');
         console.log('get all areas:', areas.data);
         // send areas data to reducer
-
+        yield put({type: 'SET_AREAS', payload: areas.data});
     } catch(err) {
         console.log('get all areas error', err);
     }
