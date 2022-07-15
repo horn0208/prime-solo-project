@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
 
 function AreaDetails(){
+    // this component shows the name, comments, and weather for selected area
 
     const [name, setName] = useState('Area Name');
 
@@ -13,6 +14,8 @@ function AreaDetails(){
     const params = useParams();
     const areaID = params.id;
     const areaName = params.name;
+    
+    const comments = useSelector((store) => store.comments);
 
     useEffect(()=>{
         // set and display current area name from params
@@ -25,7 +28,20 @@ function AreaDetails(){
      
     return(
         <div>
-            <h2>{name}</h2>
+            <div>
+                <h2>{name}</h2>
+            </div>
+            <div>
+                {comments.map(each =>{
+                    return(
+                        <div key={each.id}>
+                            <p>{each.username}</p>
+                            <p>{each.date}</p>
+                            <p>{each.comment}</p>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 }

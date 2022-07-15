@@ -49,5 +49,7 @@ SELECT * FROM areas ORDER BY "area" ASC;
 --GET one area by ID
 SELECT * FROM areas WHERE id=1;
 
---GET comments for one area
-SELECT * FROM comments WHERE area_id=1 ORDER BY id DESC;
+--GET comments for one area and their associated user's name
+SELECT comments.id, date, comment, user_id, area_id, username FROM comments 
+	JOIN "user" ON comments.user_id="user".id
+	WHERE area_id=1 ORDER BY comments.id DESC;
