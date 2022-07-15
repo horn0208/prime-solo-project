@@ -16,6 +16,7 @@ function AreaDetails(){
     const areaName = params.name;
     
     const comments = useSelector((store) => store.comments);
+    const user = useSelector((store) => store.user);
 
     useEffect(()=>{
         // set and display current area name from params
@@ -38,6 +39,17 @@ function AreaDetails(){
                             <p>{each.username}</p>
                             <p>{each.date}</p>
                             <p>{each.comment}</p>
+                            {/* if user id of comment matches id of logged in user,
+                            render edit + delete btns */}
+                                {
+                                    user.id === each.user_id?
+                                    <div>
+                                        <button>Edit</button>
+                                        <button>Delete</button>
+                                    </div>
+                                    :
+                                        <div></div>
+                                }
                         </div>
                     );
                 })}
