@@ -64,7 +64,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/area/:id"
+            path="/area/:name/:id"
           >
             <AreaDetails />
           </ProtectedRoute>

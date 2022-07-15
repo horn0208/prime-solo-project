@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {useHistory, useParams} from 'react-router-dom';
 
 function AreaDetails(){
-    // template hook
-    const [ hook, setHook ] = useState( null );
+    
+    const [name, setName] = useState('Area Name');
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+    // to use the id from url path:
+    const params = useParams();
+    const areaID = params.id;
+    const areaName = params.name;
+
+    useEffect(()=>{
+        setName(areaName);
+    }, [areaID]);
      
     return(
         <div>
-            <h2>AreaDetails</h2>
+            <h2>{name}</h2>
         </div>
     );
 }

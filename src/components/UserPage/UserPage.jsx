@@ -15,17 +15,20 @@ function UserPage() {
     dispatch({type: 'FETCH_ALL_AREAS'});
   }, []);
 
+  const seeDetails =(areaID, areaName)=>{
+    history.push(`/area/${areaName}/${areaID}`)
+  }
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <h3>Where do you want to climb?</h3>
       {/* <p>Your ID is: {user.id}</p> */}
-      {/* <LogOutButton className="btn" /> */}
        {/* map over areas and display */}
       <div>
         {areas.map(each =>{
           return (
-            <div key={each.id}>
+            <div key={each.id} onClick={()=>seeDetails(each.id, each.area)}>
               <p>{each.area}</p>
             </div>
           );
