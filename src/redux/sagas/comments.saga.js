@@ -12,7 +12,7 @@ function* fetchComments(action){
         const comments = yield axios.get(`/api/comments/areacomments/${action.payload}`);
         console.log('get comments:', comments.data);
         // send comments to reducer
-        // yield put({type: 'SET_COMMENTS', payload: comments.data});
+        yield put({type: 'SET_COMMENTS', payload: comments.data});
     } catch(err) {
         console.log('get all areas error', err);
     }
