@@ -33,16 +33,16 @@ function AreaDetails(){
                 <h2>{name}</h2>
             </div>
             <div>
-                {comments.map(each =>{
+                {comments.map(comment =>{
                     return(
-                        <div key={each.id}>
-                            <p>{each.username}</p>
-                            <p>{each.date}</p>
-                            <p>{each.comment}</p>
+                        <div key={comment.id}>
+                            <p>{comment.username}</p>
+                            <p>{comment.date}</p>
+                            <p>{comment.comment}</p>
                             {/* if user id of comment matches id of logged in user,
                             render edit + delete btns */}
                                 {
-                                    user.id === each.user_id?
+                                    user.id === comment.user_id?
                                     <div>
                                         <button>Edit</button>
                                         <button>Delete</button>
