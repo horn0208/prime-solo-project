@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AreaDetails from '../AreaDetails/AreaDetails';
+import AddComment from '../AddComment/AddComment';
 
 import './App.css';
 
@@ -67,6 +68,14 @@ function App() {
             path="/area/:name/:id"
           >
             <AreaDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/add-comment/:name/:id"
+          >
+            <AddComment />
           </ProtectedRoute>
 
           <ProtectedRoute
