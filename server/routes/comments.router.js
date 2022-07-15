@@ -5,7 +5,15 @@ const router = express.Router();
 
 router.get('/areacomments/:id', (req, res) => {
   // GET all comments for the area with this id
-  console.log('in /comments/areacomments/:id', req.params.id);
+  // req.params.id is area id
+  const queryString = `SELECT * FROM comments WHERE area_id=$1 ORDER BY id DESC;`;
+  const values = [req.params.id];
+  pool.query(queryString, values).then((result)=>{
+    res.send(result.rows);
+  }).catch(err=>{
+    console.log('error in router: get comments', err);
+    res.sendStatus(500);
+  })
 });
 
 /**
