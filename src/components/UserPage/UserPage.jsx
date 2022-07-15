@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 function UserPage() {
   // this component is the user welcome page and climbing area list view
   const user = useSelector((store) => store.user);
+  const areas = useSelector((store)=> store.areas);
   const dispatch = useDispatch();
+  const history = useHistory();
 
+  // on page load, fetch all areas
   useEffect(()=>{
     dispatch({type: 'FETCH_ALL_AREAS'});
   }, []);
@@ -14,12 +18,19 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>Where do you want to climb?</p>
+      <h3>Where do you want to climb?</h3>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
-
-      {/* map over areas and display */}
-
+       {/* map over areas and display */}
+      <div>
+        {areas.map(each =>{
+          return (
+            <div key={each.id}>
+              <p>{each.area}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

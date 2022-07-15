@@ -1,4 +1,4 @@
-const areasReducer = (state = {}, action) => {
+const areasReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_AREAS':
       return action.payload;
