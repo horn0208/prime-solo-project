@@ -30,6 +30,14 @@ function AreaDetails(){
     const addComment =()=>{
         history.push(`/add-comment/${areaName}/${areaID}`);
     }
+
+    const deleteComment =(commentID)=>{
+        dispatch({type: 'DELETE_COMMENT', payload: {
+            comment_id: commentID,
+            area_id: Number(areaID),
+            }
+        });
+    }
      
     return(
         <div>
@@ -52,7 +60,7 @@ function AreaDetails(){
                                     user.id === comment.user_id?
                                     <div>
                                         <button>Edit</button>
-                                        <button>Delete</button>
+                                        <button onClick={()=>deleteComment(comment.id)}>Delete</button>
                                     </div>
                                     :
                                         <div></div>
