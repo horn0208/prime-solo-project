@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
 
 function AddComment(){
@@ -12,7 +12,7 @@ function AddComment(){
     const dispatch = useDispatch();
     const history = useHistory();
 
-     // to use the id and name from url path:
+     // to use the area id and name from url path:
      const params = useParams();
      const areaID = params.id;
      const areaName = params.name;
@@ -21,6 +21,28 @@ function AddComment(){
          // set and display current area name from params
          setName(areaName);
      })
+
+     const submitComment =()=>{
+        // validate inputs:
+        if(date!=='' && comment!=='') {
+            // dispatch comment to saga
+            dispatch({
+                type: 'POST_COMMENT',
+                payload: {
+                    date: date,
+                    comment: comment,
+                    area_id: Number(areaID)
+                }
+            });
+            // reset inputs
+            setDate('');
+            setComment('');
+            // go back to Area Details view
+            history.push(`/area/${areaName}/${areaID}`);
+        } else {
+            alert('Please fill out all fields before submitting');
+        }
+     }
      
     return(
         <div>
@@ -35,7 +57,7 @@ function AddComment(){
                 onChange={(event)=>setComment(event.target.value)} 
                 type="text" 
                 placeholder="How was it?"/>
-                <button>Submit</button>
+                <button onClick={submitComment}>Submit</button>
         </div>
 
     );
