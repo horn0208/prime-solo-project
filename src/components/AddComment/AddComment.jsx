@@ -58,6 +58,8 @@ function AddComment(){
                 type="text" 
                 placeholder="How was it?"/>
                 <button onClick={submitComment}>Submit</button>
+                <br />
+                <button onClick={()=>{history.goBack()}}>Cancel</button>
         </div>
 
     );
