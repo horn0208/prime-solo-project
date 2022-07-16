@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import allAreasSaga from './all.areas.saga';
 import commentsSaga from './comments.saga';
 import addCommentSaga from './add.comment.saga';
+import deleteCommentSaga from './delete.comment.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     allAreasSaga(),
     commentsSaga(),
     addCommentSaga(),
+    deleteCommentSaga(),
   ]);
 }

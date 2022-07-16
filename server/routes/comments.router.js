@@ -36,4 +36,18 @@ router.post('/comment', rejectUnauthenticated, (req, res) => {
   })
 });
 
+router.delete('/comment/:id', rejectUnauthenticated, (req, res) => {
+  // DELETE the comment with this id
+  console.log('delete req.params.id:', req.params.id);
+  // adding check that user id matches in database to keep out the riffraff
+  const queryString = `DELETE FROM comments WHERE id=$1 AND user_id=$2;`;
+  const values = [req.params.id, req.user.id];
+  pool.query(queryString, values).then((result)=>{
+    res.sendStatus(200);
+  }).catch((err)=>{
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;

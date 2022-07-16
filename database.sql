@@ -53,3 +53,6 @@ SELECT * FROM areas WHERE id=1;
 SELECT comments.id, date, comment, user_id, area_id, username FROM comments 
 	JOIN "user" ON comments.user_id="user".id
 	WHERE area_id=1 ORDER BY comments.id DESC;
+
+--DELETE a comment
+DELETE FROM comments WHERE id=4 AND user_id=1;
