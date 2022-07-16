@@ -26,11 +26,18 @@ function AreaDetails(){
         // STRETCH send area id to saga to get weather
 
     }, [areaID]);
+
+    const addComment =()=>{
+        history.push(`/add-comment/${areaName}/${areaID}`);
+    }
      
     return(
         <div>
             <div>
                 <h2>{name}</h2>
+            </div>
+            <div>
+                <button onClick={addComment}>Add Comment</button>
             </div>
             <div>
                 {comments.map(comment =>{
