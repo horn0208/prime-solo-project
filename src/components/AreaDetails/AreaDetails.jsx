@@ -40,7 +40,13 @@ function AreaDetails(){
     }
 
     const editComment =(commentID)=>{
-
+        // send comment ID to saga to get comment data
+        // also passing history to do history.push in saga to prevent race condition
+        dispatch({type: 'FETCH_MY_COMMENT', payload: {
+            comment_id: commentID,
+            history: history
+            }
+        });
     }
      
     return(

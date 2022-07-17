@@ -21,6 +21,22 @@ router.get('/areacomments/:id', rejectUnauthenticated, (req, res) => {
   })
 });
 
+router.get('/comment/:id', rejectUnauthenticated, (req, res)=>{
+  // GET the comment with this id, join to get area name too
+  // req.params.id is comment_id
+  const queryString = `SELECT comments.id, date, comment, user_id, area, area_id 
+    FROM comments
+	  JOIN areas ON areas.id=comments.area_id
+	  WHERE comments.id=$1;`;
+  const values = [req.params.id];
+  pool.query(queryString, values).then((result)=>{
+    res.send(result.rows);
+  }).catch(err=>{
+    console.log('error: get my comment', err);
+    res.sendStatus(500);
+  })
+})
+
 
 router.post('/comment', rejectUnauthenticated, (req, res) => {
   // POST a new comment for the area with this id

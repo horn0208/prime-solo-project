@@ -56,3 +56,8 @@ SELECT comments.id, date, comment, user_id, area_id, username FROM comments
 
 --DELETE a comment
 DELETE FROM comments WHERE id=4 AND user_id=1;
+
+--GET one comment by id, also get that area name
+SELECT comments.id, date, comment, user_id, area, area_id FROM comments
+	JOIN areas ON areas.id=comments.area_id
+	WHERE comments.id=1;
