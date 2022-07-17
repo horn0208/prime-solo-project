@@ -11,9 +11,9 @@ function* fetchMyComment(action){
     // action.payload is comment_id and history
     try{
         const comment = yield axios.get(`/api/comments/comment/${action.payload.comment_id}`);
-        console.log('get my comment:', comment.data)
+        console.log('get my comment:', comment.data[0])
         // send this comment to reducer
-        yield put({type: 'SET_MY_COMMENT', payload: comment.data});
+        yield put({type: 'SET_MY_COMMENT', payload: comment.data[0]});
         // then go to edit comment view
         yield action.payload.history.push(`/edit-comment/${action.payload.comment_id}`);
     } catch(err) {
