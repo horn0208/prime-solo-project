@@ -1,5 +1,6 @@
 import axios from "axios";
 import {put, takeEvery} from 'redux-saga/effects';
+// may need to import history?
 
 function* myCommentSaga(){
     yield takeEvery('FETCH_MY_COMMENT', fetchMyComment);
@@ -13,8 +14,8 @@ function* fetchMyComment(action){
         console.log('get my comment:', comment.data)
         // send this comment to reducer
         yield put({type: 'SET_MY_COMMENT', payload: comment.data});
-        // then push to edit comment view
-        
+        // then go to edit comment view
+        yield action.payload.history.push(`/edit-comment/${action.payload.comment_id}`);
     } catch(err) {
         console.log('get all areas error', err);
     }
