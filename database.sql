@@ -61,3 +61,9 @@ DELETE FROM comments WHERE id=4 AND user_id=1;
 SELECT comments.id, date, comment, user_id, area, area_id FROM comments
 	JOIN areas ON areas.id=comments.area_id
 	WHERE comments.id=1;
+
+--UPDATE comment by id
+UPDATE comments SET 
+	date='2021-03-16', 
+	comment='Hiked through waist deep snow on the way in. Needs a few more weeks to melt?' 
+	WHERE id=1;

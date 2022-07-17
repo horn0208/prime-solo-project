@@ -52,6 +52,20 @@ router.post('/comment', rejectUnauthenticated, (req, res) => {
   })
 });
 
+router.put('/comment/:id', rejectUnauthenticated, (req, res) =>{
+  // UPDATE the comment with this id
+  console.log('update:', req.body);
+  const queryString = `UPDATE comments SET date=$1, comment=$2
+	  WHERE id=$3 and user_id=$4;`;
+  const values = [req.body.date, req.body.comment, req.params.id, req.user.id];
+  pool.query(queryString, values).then((result)=>{
+    res.sendStatus(200);
+  }).catch((err)=>{
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
 router.delete('/comment/:id', rejectUnauthenticated, (req, res) => {
   // DELETE the comment with this id
   console.log('delete req.params.id:', req.params.id);
