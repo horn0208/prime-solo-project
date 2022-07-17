@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+//MUI style imports
+import Button from '@mui/material/Button';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -52,7 +54,8 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button variant='contained' type="submit" value="Register" >Register</Button>
+        {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
       </div>
     </form>
   );
