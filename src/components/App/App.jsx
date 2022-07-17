@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AreaDetails from '../AreaDetails/AreaDetails';
 import AddComment from '../AddComment/AddComment';
+import EditComment from '../EditComment/EditComment';
 
 import './App.css';
 
@@ -76,6 +77,14 @@ function App() {
             path="/add-comment/:name/:id"
           >
             <AddComment />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Add Comment page else shows LoginPage
+            exact
+            path="/edit-comment/:id"
+          >
+            <EditComment />
           </ProtectedRoute>
 
           <ProtectedRoute

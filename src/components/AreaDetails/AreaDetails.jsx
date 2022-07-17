@@ -38,6 +38,10 @@ function AreaDetails(){
             }
         });
     }
+
+    const editComment =(commentID)=>{
+
+    }
      
     return(
         <div>
@@ -59,7 +63,7 @@ function AreaDetails(){
                                 {
                                     user.id === comment.user_id?
                                     <div>
-                                        <button>Edit</button>
+                                        <button onClick={()=>editComment(comment.id)}>Edit</button>
                                         <button onClick={()=>deleteComment(comment.id)}>Delete</button>
                                     </div>
                                     :
