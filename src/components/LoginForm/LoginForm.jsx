@@ -32,7 +32,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <Typography variant='h5'>Login</Typography>
+      <Typography variant='h6'>Login</Typography>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -41,7 +41,7 @@ function LoginForm() {
       <div>
         <label htmlFor="username">
           <TextField
-            margin='normal'
+            margin='dense'
             size="small"
             type="text"
             label='Username'

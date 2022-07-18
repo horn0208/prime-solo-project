@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 // MUI style imports
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -17,19 +18,19 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
-
       <div>
-        <div>
-          <p>
+        <div className='welcome-txt'>
+          <Typography variant='h5'>{heading}</Typography>
+          <Typography variant='body1'>
             Log in or register to see and share about conditions at the climbing areas!
-          </p>
+          </Typography>
         </div>
         <div>
           <RegisterForm />
 
           <center>
-            <h4>Already a Member?</h4>
+            <Typography variant='body1'>Already a Member?</Typography>
+            <br />
             <Button variant='contained' onClick={onLogin}>
               Login
             </Button>
