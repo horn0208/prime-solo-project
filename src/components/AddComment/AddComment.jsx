@@ -57,10 +57,11 @@ function AddComment(){
             </div>
             <label>
                 <Typography variant='body2'>
-                When did you go? 
+                    When did you go? 
                 </Typography>
             </label>
-            <input value={date}
+            <input className='date-picker'
+                value={date}
                 onChange={(event)=>setDate(event.target.value)}
                 type="date" />
             <TextField 
@@ -74,19 +75,20 @@ function AddComment(){
                 onChange={(event)=>setComment(event.target.value)} 
                 type="text" >
             </TextField>
-                <br />
-                <Button className='btn'
-                    variant='contained'
-                    onClick={submitComment}>
-                    Submit
-                </Button>
-                <Button className='btn'
-                    variant='contained' 
-                    onClick={()=>{history.goBack()}}>
-                    Cancel
-                </Button>
+            <br />
+            <Button 
+                className='btn'
+                variant='contained'
+                onClick={submitComment}>
+                Submit
+            </Button>
+            <Button 
+                className='btn'
+                variant='contained' 
+                onClick={()=>{history.goBack()}}>
+                Cancel
+            </Button>
         </div>
-
     );
 }
 

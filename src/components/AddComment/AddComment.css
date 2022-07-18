@@ -12,6 +12,10 @@
     padding: 10px;
 }
 
+.date-picker{
+    border: rgb(176, 31, 184) solid 1px;
+}
+
 .btn {
     margin: 10px;
 }
