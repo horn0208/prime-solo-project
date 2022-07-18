@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  const [heading, setHeading] = useState('Wet Rock Dry Rock');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -19,10 +19,10 @@ function LandingPage() {
   return (
     <div className="container">
       <div>
+      <h1 className='welcome-logo'>{heading}</h1>
         <div className='welcome-txt'>
-          <Typography variant='h5'>{heading}</Typography>
           <Typography variant='body1'>
-            Log in or register to see and share about conditions at the climbing areas!
+            Climbing conditions are weird.<br/>You should get WRDR.
           </Typography>
         </div>
         <div>
