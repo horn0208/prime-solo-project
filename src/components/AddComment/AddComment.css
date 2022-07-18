@@ -16,6 +16,10 @@
     border: rgb(176, 31, 184) solid 1px;
 }
 
-.btn {
-    margin: 10px;
+.add-btn-box {
+    width: 190px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
 }
+

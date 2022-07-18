@@ -76,18 +76,18 @@ function AddComment(){
                 type="text" >
             </TextField>
             <br />
-            <Button 
-                className='btn'
-                variant='contained'
-                onClick={submitComment}>
-                Submit
-            </Button>
-            <Button 
-                className='btn'
-                variant='contained' 
-                onClick={()=>{history.goBack()}}>
-                Cancel
-            </Button>
+            <div className='add-btn-box'>
+                <Button className='add-btn'
+                    variant='contained'
+                    onClick={submitComment}>
+                    Submit
+                </Button>
+                <Button className='add-btn'
+                    variant='contained' 
+                    onClick={()=>{history.goBack()}}>
+                    Cancel
+                </Button>
+            </div>
         </div>
     );
 }
