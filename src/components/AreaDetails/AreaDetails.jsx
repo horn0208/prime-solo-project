@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
+import './AreaDetails.css';
+//MUI style imports
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function AreaDetails(){
     // this component shows the name, comments, and weather for selected area
@@ -50,35 +58,52 @@ function AreaDetails(){
     }
      
     return(
-        <div>
+        <div className='mega-container'>
             <div>
-                <h2>{name}</h2>
+                <div className='area-name'>
+                    <Typography variant='h5'>{name}</Typography>
+                </div>
+                <p>Weather API info will go here</p>
+                <br />
             </div>
-            <div>
-                <button onClick={addComment}>Add Comment</button>
+            <div className='add-btn'>
+                <Button variant='contained' onClick={addComment}>Add Comment</Button>
             </div>
-            <div>
+            <Stack
+                justifyContent="flex-start"
+                spacing={1.5}>
                 {comments.map(comment =>{
                     return(
-                        <div key={comment.id}>
-                            <p>{comment.username}</p>
-                            <p>{comment.date}</p>
-                            <p>{comment.comment}</p>
+                        <div className='comment-li' key={comment.id}>
+                            <div className='comment-txt'>
+                                <Typography variant='body1'>{comment.date} | {comment.username}</Typography>
+                                <Typography variant='body2'>{comment.comment}</Typography>
+                            </div>
                             {/* if user id of comment matches id of logged in user,
                             render edit + delete btns */}
                                 {
                                     user.id === comment.user_id?
-                                    <div>
-                                        <button onClick={()=>editComment(comment.id)}>Edit</button>
-                                        <button onClick={()=>deleteComment(comment.id)}>Delete</button>
+                                    <div className='btn-box'>
+                                        <IconButton 
+                                            aria-label='edit'
+                                            color='primary'
+                                            onClick={()=>editComment(comment.id)}>
+                                            <EditIcon/>
+                                        </IconButton>
+                                        <IconButton 
+                                            aria-label='delete'
+                                            color='primary'
+                                            onClick={()=>deleteComment(comment.id)}>
+                                            <DeleteForeverIcon/>
+                                        </IconButton>
                                     </div>
                                     :
-                                        <div></div>
+                                    <div className='btn-box'></div>
                                 }
                         </div>
                     );
                 })}
-            </div>
+            </Stack>
         </div>
     );
 }

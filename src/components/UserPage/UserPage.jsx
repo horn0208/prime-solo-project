@@ -25,7 +25,7 @@ function UserPage() {
   }
 
   return (
-    <div className="container">
+    <div className="areas-container">
       <Typography variant='h5'>Welcome, {user.username}!</Typography>
       <Typography className='where-climb' variant='body1'>Where do you want to climb?</Typography>
       {/* <p>Your ID is: {user.id}</p> */}
