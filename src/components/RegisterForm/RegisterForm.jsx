@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+//MUI style imports
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -21,7 +25,7 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <Typography variant='h6'>Register User</Typography>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -29,30 +33,33 @@ function RegisterForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          <TextField
+            margin='dense'
+            size="small"
             type="text"
-            name="username"
+            label='Username'
             value={username}
             required
-            onChange={(event) => setUsername(event.target.value)}
-          />
+            onChange={(event) => setUsername(event.target.value)}>
+          </TextField>
         </label>
       </div>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+          <TextField
+            margin='normal'
+            size="small"
             type="password"
-            name="password"
+            label='Password'
             value={password}
             required
-            onChange={(event) => setPassword(event.target.value)}
-          />
+            onChange={(event) => setPassword(event.target.value)}>
+          </TextField>
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button variant='contained' type="submit" value="Register" >Register</Button>
+        {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
       </div>
     </form>
   );

@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import './UserPage.css';
+//MUI style imports
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+
 
 function UserPage() {
   // this component is the user welcome page and climbing area list view
@@ -20,20 +25,22 @@ function UserPage() {
   }
 
   return (
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <h3>Where do you want to climb?</h3>
+    <div className="areas-container">
+      <Typography variant='h5'>Welcome, {user.username}!</Typography>
+      <Typography className='where-climb' variant='body1'>Where do you want to climb?</Typography>
       {/* <p>Your ID is: {user.id}</p> */}
        {/* map over areas and display */}
-      <div>
+      <Stack 
+        justifyContent="flex-start"
+        spacing={1.5}>
         {areas.map(each =>{
           return (
-            <div key={each.id} onClick={()=>seeDetails(each.id, each.area)}>
-              <p>{each.area}</p>
+            <div className='area-li' key={each.id} onClick={()=>seeDetails(each.id, each.area)}>
+              <Typography variant='button'>{each.area}</Typography>
             </div>
           );
         })}
-      </div>
+      </Stack>
     </div>
   );
 }

@@ -1,0 +1,25 @@
+.add-container{
+    padding: 30px 20px;
+    background-color: #EFE9F4;
+    text-align: center;
+    box-shadow: 0 4px 4px -4px rgb(176, 31, 184);
+    border: rgb(176, 31, 184) solid 1px;
+    border-radius: 2px;
+    margin: 20px;
+}
+
+.title{
+    padding: 10px;
+}
+
+.date-picker{
+    border: rgb(176, 31, 184) solid 1px;
+}
+
+.add-btn-box {
+    width: 190px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+

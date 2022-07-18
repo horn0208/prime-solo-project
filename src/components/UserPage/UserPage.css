@@ -1,0 +1,21 @@
+.area-li{
+    /* might change background color to MUI fuschia or something */
+    background-color: #5cffef;
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: 0 4px 4px -2.5px rgb(64, 195, 238);
+}
+
+.where-climb{
+    margin: 10px auto;
+}
+
+.areas-container {
+    padding: 30px 20px;
+    background-color: #EFE9F4;
+    text-align: center;
+    box-shadow: 0 4px 4px -4px rgb(176, 31, 184);
+    border: rgb(176, 31, 184) solid 1px;
+    border-radius: 2px;
+    margin: 20px;
+  }

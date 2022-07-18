@@ -1,6 +1,18 @@
 /* --------------------------------------------------------------------------------
 Grid
 -------------------------------------------------------------------------------- */
+ 
+
+
+.welcome-logo{
+  margin: 0px 16px;
+  font-family: 'Rubik Moonrocks', cursive;
+  font-size: 31px;
+}
+
+.welcome-txt{
+  margin: 20px;
+}
 
 .grid {
   display: flex;

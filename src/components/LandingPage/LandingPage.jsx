@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
+// MUI style imports
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  const [heading, setHeading] = useState('Wet Rock Dry Rock');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -15,22 +18,22 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
-
       <div>
-        <div>
-          <p>
-            Log in or register to see and share about conditions at the climbing areas!
-          </p>
+      <h1 className='welcome-logo'>{heading}</h1>
+        <div className='welcome-txt'>
+          <Typography variant='body1'>
+            Climbing conditions are weird.<br/>You should get WRDR.
+          </Typography>
         </div>
         <div>
           <RegisterForm />
 
           <center>
-            <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
+            <Typography variant='body1'>Already a Member?</Typography>
+            <br />
+            <Button variant='contained' onClick={onLogin}>
               Login
-            </button>
+            </Button>
           </center>
         </div>
       </div>

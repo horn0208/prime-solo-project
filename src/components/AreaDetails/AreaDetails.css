@@ -1,0 +1,27 @@
+.mega-container{
+    padding: 30px 20px;
+    background-color: #EFE9F4;
+    text-align: center;
+    box-shadow: 0 4px 4px -4px rgb(176, 31, 184);
+    border: rgb(176, 31, 184) solid 1px;
+    border-radius: 2px;
+    margin: 20px;
+}
+
+.area-name{
+    text-align: center;
+}
+.add-btn{
+    margin: 10px;
+}
+.comment-li{
+    background-color: #5cffef;
+    padding: 10px 20px;
+    text-align: left;
+    box-shadow: 0 4px 4px -2.5px rgb(64, 195, 238);
+}
+.btn-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
+import './AddComment.css';
+// MUI style imports
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
 
 function AddComment(){
     // hook for area name
@@ -45,23 +51,44 @@ function AddComment(){
      }
      
     return(
-        <div>
+        <div className='add-container'>
             <div>
-                <h2>New Observation: {name}</h2>
+                <Typography className='title' variant='h5'>New Observation for <br /> {name}</Typography>
             </div>
-            <label>When did you go? </label>
-            <input value={date}
+            <label>
+                <Typography variant='body2'>
+                    When did you go? 
+                </Typography>
+            </label>
+            <input className='date-picker'
+                value={date}
                 onChange={(event)=>setDate(event.target.value)}
                 type="date" />
-            <input value={comment} 
+            <TextField 
+                variant='outlined'
+                margin='normal'
+                fullWidth
+                multiline
+                rows={6}
+                label='How was it?'
+                value={comment} 
                 onChange={(event)=>setComment(event.target.value)} 
-                type="text" 
-                placeholder="How was it?"/>
-                <button onClick={submitComment}>Submit</button>
-                <br />
-                <button onClick={()=>{history.goBack()}}>Cancel</button>
+                type="text" >
+            </TextField>
+            <br />
+            <div className='add-btn-box'>
+                <Button className='add-btn'
+                    variant='contained'
+                    onClick={submitComment}>
+                    Submit
+                </Button>
+                <Button className='add-btn'
+                    variant='contained' 
+                    onClick={()=>{history.goBack()}}>
+                    Cancel
+                </Button>
+            </div>
         </div>
-
     );
 }
 
