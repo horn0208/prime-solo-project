@@ -74,6 +74,8 @@ Button
   color: #008183;
 }
 
+
+
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -95,8 +97,8 @@ Form Treatment
 
 .formPanel {
   box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
+  width: 300px;
+  max-width: 90%;
   padding: 25px;
   margin: 0 auto 20px;
   background-color: #EFE9F4;

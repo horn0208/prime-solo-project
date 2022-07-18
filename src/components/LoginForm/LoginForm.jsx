@@ -3,6 +3,10 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 // MUI style imports
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
+import './LoginForm.css';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -28,7 +32,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <Typography variant='h5'>Login</Typography>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -36,30 +40,33 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          <TextField
+            margin='normal'
+            size="small"
             type="text"
-            name="username"
+            label='Username'
             required
             value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
+            onChange={(event) => setUsername(event.target.value)}>
+          </TextField>
         </label>
       </div>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+        <TextField
+            margin='normal'
+            size="small"
             type="password"
-            name="password"
+            label='Password'
             required
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+            onChange={(event) => setPassword(event.target.value)}>
+            </TextField>
+          
         </label>
       </div>
       <div>
-        <Button variant='contained' type="submit" value="Log In" >Log In</Button>
+        <Button className='loginBtn' variant='contained' type="submit" value="Log In" >Log In</Button>
       </div>
     </form>
   );
