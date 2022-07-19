@@ -15,9 +15,9 @@ function* fetchForecast(action){
         const data = area.data;
         // use returned data to make API call
         const forecast = yield axios.get(`https://api.weather.gov/gridpoints/${data.office}/${data.gridx},${data.gridy}/forecast`)
-        console.log('forecast', forecast);
-        // send results to reducer
-        
+        console.log('forecast', forecast.data);
+        // send forecast data to reducer
+        yield put({type: 'SET_FORECAST', payload: forecast.data.properties});
     } catch(err) {
         console.log('get forecast error', err);
     }

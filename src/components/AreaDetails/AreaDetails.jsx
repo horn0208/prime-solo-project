@@ -25,6 +25,7 @@ function AreaDetails(){
     
     const comments = useSelector((store) => store.comments);
     const user = useSelector((store) => store.user);
+    const forecast = useSelector((store) => store.forecast);
 
     useEffect(()=>{
         // set and display current area name from params
