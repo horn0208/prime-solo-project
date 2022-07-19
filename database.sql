@@ -67,3 +67,6 @@ UPDATE comments SET
 	date='2021-03-16', 
 	comment='Hiked through waist deep snow on the way in. Needs a few more weeks to melt?' 
 	WHERE id=1;
+
+--GET one area by id
+SELECT * FROM areas WHERE id=1;

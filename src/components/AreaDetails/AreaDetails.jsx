@@ -31,8 +31,8 @@ function AreaDetails(){
         setName(areaName);
         // send area id to saga to get comments
         dispatch({type: 'FETCH_COMMENTS', payload: Number(areaID)});
-        // STRETCH send area id to saga to get weather
-
+        // send area id to saga to get weather from API
+        dispatch({type: 'FETCH_FORECAST', payload: Number(areaID)});
     }, [areaID]);
 
     const addComment =()=>{
