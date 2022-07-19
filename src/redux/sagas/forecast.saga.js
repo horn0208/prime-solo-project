@@ -9,11 +9,14 @@ function* fetchForecast(action){
     // gets forecast for an area (GET to database and GET to API in router)
     // action.payload is area id
     try{
-        console.log('in forecast saga');
-        const forecast = yield axios.get(`/api/areas/forecast/${action.payload}`);
-        console.log('forecast result', forecast.data);
-        //console.log forecast.data
-        // send to reducer
+        // get selected area data from db
+        const area = yield axios.get(`/api/areas/area/${action.payload}`);
+        console.log('area result', area.data);
+        const data = area.data;
+        // use returned data to make API call
+        const forecast = yield axios.get(`https://api.weather.gov/gridpoints/${data.office}/${data.gridx},${data.gridy}/forecast`)
+        console.log('forecast', forecast);
+        // send results to reducer
         
     } catch(err) {
         console.log('get forecast error', err);

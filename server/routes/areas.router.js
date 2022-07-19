@@ -17,18 +17,15 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
-// GET the forecast for an area
-router.get('/forecast/:id', rejectUnauthenticated, (req, res) =>{
-  // GET info from db for this area
-  console.log('in forecast get:', req.params.id);
+// GET info for an area
+router.get('/area/:id', rejectUnauthenticated, (req, res) =>{
   const queryString = `SELECT * FROM areas WHERE id=$1;`;
   const values = [req.params.id];
   pool.query(queryString, values).then((result)=>{
     console.log('back from db:', result.rows[0]);
-    // set result from db to variable and use to make API request:
-
+    res.send(result.rows[0]);
   }).catch((err)=>{
-    console.log('error getting forecast in router', err);
+    console.log('error getting area in router', err);
     res.sendStatus(500);
   })
 });
