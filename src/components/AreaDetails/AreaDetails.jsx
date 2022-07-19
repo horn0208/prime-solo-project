@@ -14,6 +14,7 @@ function AreaDetails(){
     // this component shows the name, comments, and weather for selected area
 
     const [name, setName] = useState('Area Name');
+    const [today, setToday] = useState('');
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -25,15 +26,16 @@ function AreaDetails(){
     
     const comments = useSelector((store) => store.comments);
     const user = useSelector((store) => store.user);
-    const forecast = useSelector((store) => store.forecast);
+    const forecastData = useSelector((store) => store.forecast);
 
-    useEffect(()=>{
+    useEffect(async ()=>{
         // set and display current area name from params
         setName(areaName);
         // send area id to saga to get comments
         dispatch({type: 'FETCH_COMMENTS', payload: Number(areaID)});
         // send area id to saga to get weather from API
-        dispatch({type: 'FETCH_FORECAST', payload: Number(areaID)});
+        await dispatch({type: 'FETCH_FORECAST', payload: Number(areaID)});
+        await setToday(forecastData.periods[0]);
     }, [areaID]);
 
     const addComment =()=>{
@@ -64,8 +66,10 @@ function AreaDetails(){
                 <div className='area-name'>
                     <Typography variant='h5'>{name}</Typography>
                 </div>
-                <p>Weather API info will go here</p>
-                <br />
+                {/* weather API results */}
+                    <p>{today.name}</p>
+                    <img src={today.icon} alt="today icon"/>
+                    <p>{today.detailedForecast}</p>
             </div>
             <div className='add-btn'>
                 <Button variant='contained' onClick={addComment}>Add Comment</Button>
