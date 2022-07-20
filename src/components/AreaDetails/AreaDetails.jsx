@@ -26,6 +26,7 @@ function AreaDetails(){
     const comments = useSelector((store) => store.comments);
     const user = useSelector((store) => store.user);
     const forecastData = useSelector((store) => store.forecast);
+    const observed = useSelector((store) => store.observed);
 
     useEffect(()=>{
         // set and display current area name from params
@@ -33,8 +34,7 @@ function AreaDetails(){
         // send area id to saga to get comments
         dispatch({type: 'FETCH_COMMENTS', payload: Number(areaID)});
         // send area id to saga to get weather from API
-        dispatch({type: 'FETCH_FORECAST', payload: {
-            areaID: Number(areaID)}});
+        dispatch({type: 'FETCH_FORECAST', payload: Number(areaID)}); 
     }, [areaID]);
 
 
@@ -65,21 +65,43 @@ function AreaDetails(){
             <div className='area-name'>
                 <Typography variant='h5'>{name}</Typography>
             </div>
-
-            {/* Conditional rendering to display forecast only when data is back from API */}  
+            
+            {/* Conditional rendering to display FORECAST only when data is back from API */}  
             {forecastData.length === 0 ? (
                 <p>loading forecast</p>
             ) : (
                 <div>
                 {/* weather API results */}
                     <div>
-                            <p>{forecastData.periods[0].name}</p>
-                            <img src={forecastData.periods[0].icon} alt="today icon"/>
-                            <p>{forecastData.periods[0].detailedForecast}</p>
+                        <Typography variant='body1'>{forecastData.periods[0].name}</Typography>
+                        <img src={forecastData.periods[0].icon} alt="today icon"/>
+                        <Typography variant='body2'>{forecastData.periods[0].detailedForecast}</Typography>
                     </div>
                 </div>
             )}
 
+            {/* Only display OBSERVED weather info when data is back from API */}
+
+            {observed.length === 0 ? (
+                <div>
+                    <p>loading observed weather</p>
+                </div>
+            ) : (
+                <div>
+                    <Typography variant='body2'>Humidity: {Math.round(observed.relativeHumidity.value)}%</Typography>
+
+                    {/* if precip last 6 hours is null, show "none" */}
+                    <Typography variant='body2'>Precip past 6hrs: {
+                        !(observed.precipitationLast6Hours.value) ?
+                        <Typography variant='body2'>none</Typography>
+                        :
+                        observed.precipitationLast6Hours.value   
+                    }
+                    </Typography>
+                </div>
+            )}
+
+            {/* Comments */}
             <div className='add-btn'>
                 <Button variant='contained' onClick={addComment}>Add Comment</Button>
             </div>

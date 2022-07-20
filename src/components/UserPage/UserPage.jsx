@@ -20,27 +20,15 @@ function UserPage() {
     dispatch({type: 'FETCH_ALL_AREAS'});
   }, []);
 
-  // original code changing to details view first: race condition getting forecast
-  // const seeDetails =(areaID, areaName)=>{
-  //   history.push(`/area/${areaName}/${areaID}`)
-  // }
-
-  // before changing to details view, do the forecast call
+  // go to Area Details view
   const seeDetails =(areaID, areaName)=>{
-    dispatch({type: 'FETCH_FORECAST', payload: {
-      areaID: Number(areaID),
-      areaName: areaName,
-      history: history
-      }
-    });
+    history.push(`/area/${areaName}/${areaID}`);
   }
   
-
   return (
     <div className="areas-container">
       <Typography variant='h5'>Welcome, {user.username}!</Typography>
       <Typography className='where-climb' variant='body1'>Where do you want to climb?</Typography>
-      {/* <p>Your ID is: {user.id}</p> */}
        {/* map over areas and display */}
       <Stack 
         justifyContent="flex-start"

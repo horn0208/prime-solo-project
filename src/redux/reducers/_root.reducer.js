@@ -5,6 +5,7 @@ import areas from './areas.reducer';
 import comments from './comments.reducer';
 import comment from './comment.reducer';
 import forecast from './forecast.reducer';
+import observed from './observed.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   comments, // contains all comments for selected area (from Area Details)
   comment, // contains one selected comment
   forecast, //forecast and times for selected area
+  observed, // latest observed weather conditions for selected area
 });
 
 export default rootReducer;
