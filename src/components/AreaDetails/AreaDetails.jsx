@@ -71,29 +71,33 @@ function AreaDetails(){
                 <p>loading forecast</p>
             ) : (
                 <div>
-                {/* weather API results */}
-                    <div>
-                        <Typography variant='body1'>{forecastData.periods[0].name}</Typography>
-                        <img src={forecastData.periods[0].icon} alt="today icon"/>
-                        <Typography variant='body2'>{forecastData.periods[0].detailedForecast}</Typography>
-                    </div>
+                    {/* weather API results */}
+                    <Typography variant='body1'>{forecastData.periods[0].name}</Typography>
+                    <img src={forecastData.periods[0].icon} alt="today icon"/>
+                    <Typography variant='body2'>{forecastData.periods[0].detailedForecast}</Typography>
                 </div>
             )}
 
             {/* Only display OBSERVED weather info when data is back from API */}
-
             {observed.length === 0 ? (
                 <div>
                     <p>loading observed weather</p>
                 </div>
             ) : (
                 <div>
-                    <Typography variant='body2'>Humidity: {Math.round(observed.relativeHumidity.value)}%</Typography>
+                    {/* if humidity value is null, show "not measured" */}
+                    <Typography variant='body2'>% Humidity: {
+                        !(observed.relativeHumidity.value) ?
+                        <Typography component={'span'} variant='body2'>not measured</Typography>
+                        :
+                        Math.round(observed.relativeHumidity.value)
+                    }
+                    </Typography>
 
                     {/* if precip last 6 hours is null, show "none" */}
                     <Typography variant='body2'>Precip past 6hrs: {
                         !(observed.precipitationLast6Hours.value) ?
-                        <Typography variant='body2'>none</Typography>
+                        <Typography component={'span'} variant='body2'>none</Typography>
                         :
                         observed.precipitationLast6Hours.value   
                     }

@@ -40,7 +40,7 @@ INSERT INTO areas (area, gridx, gridy, office, station) VALUES
 --Dummy data to make sure comments show up correctly
 INSERT INTO comments (date, comment, user_id, area_id) VALUES
 	('3/16/2021', 'Hiked through waist deep snow on the way in. Needs a few more weeks to melt!', '1', '1'),
-	('6/02/2021', 'Bugs are bad. Borfo the magnificent is itchy. Bring bug spray', '2', '1');
+	('6/02/2021', 'Bugs are bad. Borfo the magnificent is itchy. Bring bug spray', '2', '1'),
 	('7/14/2022', 'Winter wall is blazing in the sun. Go to the shadyy side', '2', '5');
 	
 --GET all areas
@@ -52,7 +52,7 @@ SELECT * FROM areas WHERE id=1;
 --GET comments for one area and their associated user's name
 SELECT comments.id, date, comment, user_id, area_id, username FROM comments 
 	JOIN "user" ON comments.user_id="user".id
-	WHERE area_id=1 ORDER BY comments.id DESC;
+	WHERE area_id=1 ORDER BY comments.date DESC;
 
 --DELETE a comment
 DELETE FROM comments WHERE id=4 AND user_id=1;

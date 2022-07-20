@@ -11,7 +11,7 @@ router.get('/areacomments/:id', rejectUnauthenticated, (req, res) => {
   // req.params.id is area id
   const queryString = `SELECT comments.id, date, comment, user_id, area_id, username FROM comments 
 	  JOIN "user" ON comments.user_id="user".id
-	  WHERE area_id=$1 ORDER BY comments.id DESC;`;
+	  WHERE area_id=$1 ORDER BY comments.date DESC;`;
   const values = [req.params.id];
   pool.query(queryString, values).then((result)=>{
     res.send(result.rows);

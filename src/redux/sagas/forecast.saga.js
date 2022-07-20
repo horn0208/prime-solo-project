@@ -22,7 +22,7 @@ function* fetchForecast(action){
         yield put({type: 'SET_FORECAST', payload: forecast.data.properties});
 
         // make OBSERVED/HISTORICAL PRECIP API call
-        const past = yield axios.get(`https://api.weather.gov/stations/${data.station}/observations/latest?require_qc=true `);
+        const past = yield axios.get(`https://api.weather.gov/stations/${data.station}/observations/latest`);
         console.log('past:', past.data);
         // send observed weather data to reducer
         yield put({type: 'SET_OBSERVED', payload: past.data.properties});
