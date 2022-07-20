@@ -7,10 +7,11 @@ function* forecastSaga(){
 
 function* fetchForecast(action){
     // gets forecast for an area (GET to database and GET to API in router)
-    // action.payload is area id
+    // action.payload was area id, is now areaID, areaName, history (previously just area id)
     try{
+        console.log(action.payload);
         // get selected area data from db
-        const area = yield axios.get(`/api/areas/area/${action.payload}`);
+        const area = yield axios.get(`/api/areas/area/${action.payload.areaID}`);//changed from just action.payload
         console.log('area result', area.data);
         const data = area.data;
         // use returned data to make API call
@@ -18,6 +19,10 @@ function* fetchForecast(action){
         console.log('forecast', forecast.data);
         // send forecast data to reducer
         yield put({type: 'SET_FORECAST', payload: forecast.data.properties});
+        // go to area details view - ADDED CONDTIONAL CHECKING FOR AREANAME
+        if (action.payload.areaName){
+            yield action.payload.history.push(`/area/${action.payload.areaName}/${action.payload.areaID}`);
+        }
     } catch(err) {
         console.log('get forecast error', err);
     }

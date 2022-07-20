@@ -20,9 +20,21 @@ function UserPage() {
     dispatch({type: 'FETCH_ALL_AREAS'});
   }, []);
 
+  // original code changing to details view first: race condition getting forecast
+  // const seeDetails =(areaID, areaName)=>{
+  //   history.push(`/area/${areaName}/${areaID}`)
+  // }
+
+  // before changing to details view, do the forecast call
   const seeDetails =(areaID, areaName)=>{
-    history.push(`/area/${areaName}/${areaID}`)
+    dispatch({type: 'FETCH_FORECAST', payload: {
+      areaID: Number(areaID),
+      areaName: areaName,
+      history: history
+      }
+    });
   }
+  
 
   return (
     <div className="areas-container">

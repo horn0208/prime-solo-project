@@ -14,7 +14,6 @@ function AreaDetails(){
     // this component shows the name, comments, and weather for selected area
 
     const [name, setName] = useState('Area Name');
-    const [today, setToday] = useState('');
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -28,15 +27,16 @@ function AreaDetails(){
     const user = useSelector((store) => store.user);
     const forecastData = useSelector((store) => store.forecast);
 
-    useEffect(async ()=>{
+    useEffect(()=>{
         // set and display current area name from params
         setName(areaName);
         // send area id to saga to get comments
         dispatch({type: 'FETCH_COMMENTS', payload: Number(areaID)});
         // send area id to saga to get weather from API
-        await dispatch({type: 'FETCH_FORECAST', payload: Number(areaID)});
-        await setToday(forecastData.periods[0]);
+        dispatch({type: 'FETCH_FORECAST', payload: {
+            areaID: Number(areaID)}});
     }, [areaID]);
+
 
     const addComment =()=>{
         history.push(`/add-comment/${areaName}/${areaID}`);
@@ -62,15 +62,24 @@ function AreaDetails(){
      
     return(
         <div className='mega-container'>
-            <div>
-                <div className='area-name'>
-                    <Typography variant='h5'>{name}</Typography>
-                </div>
-                {/* weather API results */}
-                    <p>{today.name}</p>
-                    <img src={today.icon} alt="today icon"/>
-                    <p>{today.detailedForecast}</p>
+            <div className='area-name'>
+                <Typography variant='h5'>{name}</Typography>
             </div>
+
+            {/* Conditional rendering to display forecast only when data is back from API */}  
+            {forecastData.length === 0 ? (
+                <p>loading forecast</p>
+            ) : (
+                <div>
+                {/* weather API results */}
+                    <div>
+                            <p>{forecastData.periods[0].name}</p>
+                            <img src={forecastData.periods[0].icon} alt="today icon"/>
+                            <p>{forecastData.periods[0].detailedForecast}</p>
+                    </div>
+                </div>
+            )}
+
             <div className='add-btn'>
                 <Button variant='contained' onClick={addComment}>Add Comment</Button>
             </div>
@@ -112,5 +121,6 @@ function AreaDetails(){
         </div>
     );
 }
+
 
 export default AreaDetails;

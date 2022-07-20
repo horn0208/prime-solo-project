@@ -1,4 +1,4 @@
-const forecastReducer = (state = {}, action) => {
+const forecastReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_FORECAST':
       return action.payload;
