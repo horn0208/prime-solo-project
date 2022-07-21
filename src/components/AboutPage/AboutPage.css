@@ -1,3 +1,9 @@
 .info{
     text-align: left;
 }
+
+.logo{
+    margin: 0px 10px 18px;
+    font-family: 'Rubik Moonrocks', cursive;
+    font-size: 34px;
+  }
