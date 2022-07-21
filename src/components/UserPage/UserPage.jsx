@@ -20,15 +20,15 @@ function UserPage() {
     dispatch({type: 'FETCH_ALL_AREAS'});
   }, []);
 
+  // go to Area Details view
   const seeDetails =(areaID, areaName)=>{
-    history.push(`/area/${areaName}/${areaID}`)
+    history.push(`/area/${areaName}/${areaID}`);
   }
-
+  
   return (
     <div className="areas-container">
       <Typography variant='h5'>Welcome, {user.username}!</Typography>
       <Typography className='where-climb' variant='body1'>Where do you want to climb?</Typography>
-      {/* <p>Your ID is: {user.id}</p> */}
        {/* map over areas and display */}
       <Stack 
         justifyContent="flex-start"

@@ -25,15 +25,18 @@ function AreaDetails(){
     
     const comments = useSelector((store) => store.comments);
     const user = useSelector((store) => store.user);
+    const forecastData = useSelector((store) => store.forecast);
+    const observed = useSelector((store) => store.observed);
 
     useEffect(()=>{
         // set and display current area name from params
         setName(areaName);
         // send area id to saga to get comments
         dispatch({type: 'FETCH_COMMENTS', payload: Number(areaID)});
-        // STRETCH send area id to saga to get weather
-
+        // send area id to saga to get weather from API
+        dispatch({type: 'FETCH_FORECAST', payload: Number(areaID)}); 
     }, [areaID]);
+
 
     const addComment =()=>{
         history.push(`/add-comment/${areaName}/${areaID}`);
@@ -59,13 +62,50 @@ function AreaDetails(){
      
     return(
         <div className='mega-container'>
-            <div>
-                <div className='area-name'>
-                    <Typography variant='h5'>{name}</Typography>
-                </div>
-                <p>Weather API info will go here</p>
-                <br />
+            <div className='area-name'>
+                <Typography variant='h5'>{name}</Typography>
             </div>
+            
+            {/* Conditional rendering to display FORECAST only when data is back from API */}  
+            {forecastData.length === 0 ? (
+                <p>loading forecast</p>
+            ) : (
+                <div>
+                    {/* weather API results */}
+                    <Typography variant='body1'>{forecastData.periods[0].name}</Typography>
+                    <img src={forecastData.periods[0].icon} alt="today icon"/>
+                    <Typography variant='body2'>{forecastData.periods[0].detailedForecast}</Typography>
+                </div>
+            )}
+
+            {/* Only display OBSERVED weather info when data is back from API */}
+            {observed.length === 0 ? (
+                <div>
+                    <p>loading observed weather</p>
+                </div>
+            ) : (
+                <div>
+                    {/* if humidity value is null, show "not measured" */}
+                    <Typography variant='body2'>% Humidity: {
+                        !(observed.relativeHumidity.value) ?
+                        <Typography component={'span'} variant='body2'>not measured</Typography>
+                        :
+                        Math.round(observed.relativeHumidity.value)
+                    }
+                    </Typography>
+
+                    {/* if precip last 6 hours is null, show "none" */}
+                    <Typography variant='body2'>Precip past 6hrs: {
+                        !(observed.precipitationLast6Hours.value) ?
+                        <Typography component={'span'} variant='body2'>none</Typography>
+                        :
+                        observed.precipitationLast6Hours.value   
+                    }
+                    </Typography>
+                </div>
+            )}
+
+            {/* Comments */}
             <div className='add-btn'>
                 <Button variant='contained' onClick={addComment}>Add Comment</Button>
             </div>
@@ -107,5 +147,6 @@ function AreaDetails(){
         </div>
     );
 }
+
 
 export default AreaDetails;
