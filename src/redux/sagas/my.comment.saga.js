@@ -15,7 +15,7 @@ function* fetchMyComment(action){
         // send this comment to reducer
         yield put({type: 'SET_MY_COMMENT', payload: comment.data[0]});
         // then go to edit comment view
-        yield action.payload.history.push(`/edit-comment/${action.payload.comment_id}`);
+        yield action.payload.history.push(`/edit-comment`);
     } catch(err) {
         console.log('get all areas error', err);
     }

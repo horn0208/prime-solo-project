@@ -104,8 +104,10 @@ Form Treatment
   padding: 25px;
   margin: 0 auto 20px;
   background-color: #EFE9F4;
+  box-shadow: 0 4px 4px -3px rgb(176, 31, 184);
+  border: rgb(176, 31, 184) solid 1px;
   border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 input {

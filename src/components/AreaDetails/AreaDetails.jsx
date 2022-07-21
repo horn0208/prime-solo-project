@@ -9,11 +9,20 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+// MUI delete dialog imports
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 
 function AreaDetails(){
     // this component shows the name, comments, and weather for selected area
 
     const [name, setName] = useState('Area Name');
+    // hook for modal display
+    const [open, setOpen] = useState(false);
+    // hook for id of comment to delete
+    const [toDelete, setToDelete] = useState(0);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -42,12 +51,24 @@ function AreaDetails(){
         history.push(`/add-comment/${areaName}/${areaID}`);
     }
 
-    const deleteComment =(commentID)=>{
+    // delete comment after delete btn is clicked in modal
+    const deleteComment =()=>{
         dispatch({type: 'DELETE_COMMENT', payload: {
-            comment_id: commentID,
+            comment_id: toDelete,
             area_id: Number(areaID),
             }
         });
+        // close modal
+        handleClose();
+    }
+
+    // open/close modal on click
+    const handleOpen = (commentID)=>{
+        setOpen(true);
+        setToDelete(commentID);
+    }
+    const handleClose =()=>{
+        setOpen(false);
     }
 
     const editComment =(commentID)=>{
@@ -133,9 +154,25 @@ function AreaDetails(){
                                         <IconButton 
                                             aria-label='delete'
                                             color='primary'
-                                            onClick={()=>deleteComment(comment.id)}>
+                                            onClick={()=>handleOpen(comment.id)}>
                                             <DeleteForeverIcon/>
                                         </IconButton>
+                                        {/* delete dialog modal */}
+                                        <Dialog
+                                            open={open}
+                                            onClose={handleClose}>
+                                            <DialogContent>
+                                                <DialogContentText>
+                                                    Are you sure you want to permanently delete your comment?
+                                                </DialogContentText>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={handleClose}>Cancel</Button>
+                                                <Button onClick={deleteComment} autoFocus>
+                                                    Delete
+                                                </Button>
+                                            </DialogActions>
+                                        </Dialog>
                                     </div>
                                     :
                                     <div className='btn-box'></div>

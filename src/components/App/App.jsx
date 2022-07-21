@@ -82,7 +82,7 @@ function App() {
           <ProtectedRoute
             // logged in shows Add Comment page else shows LoginPage
             exact
-            path="/edit-comment/:id"
+            path="/edit-comment"
           >
             <EditComment />
           </ProtectedRoute>
