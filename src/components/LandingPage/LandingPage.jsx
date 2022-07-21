@@ -21,8 +21,8 @@ function LandingPage() {
       <div>
       <h1 className='welcome-logo'>{heading}</h1>
         <div className='welcome-txt'>
-          <Typography variant='body1'>
-            Climbing conditions are weird.<br/>You should get WRDR.
+          <Typography variant='button'>
+            Conditions are weird.<br/>You should get WRDR.
           </Typography>
         </div>
         <div>
