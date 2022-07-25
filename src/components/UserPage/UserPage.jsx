@@ -18,6 +18,9 @@ function UserPage() {
   // on page load, fetch all areas
   useEffect(()=>{
     dispatch({type: 'FETCH_ALL_AREAS'});
+    // and clear forecast and observed weather reducers
+    dispatch({type: 'SET_FORECAST', payload: []});
+    dispatch({type: 'SET_OBSERVED', payload: []});
   }, []);
 
   // go to Area Details view
