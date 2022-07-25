@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
 import './AreaDetails.css';
+import Spinner from '../Spinner/Spinner';
 //MUI style imports
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -89,7 +90,7 @@ function AreaDetails(){
             
             {/* Conditional rendering to display FORECAST only when data is back from API */}  
             {forecastData.length === 0 ? (
-                <p>loading forecast</p>
+                <Spinner />
             ) : (
                 <div>
                     {/* weather API results */}
