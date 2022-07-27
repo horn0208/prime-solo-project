@@ -1,5 +1,7 @@
 import axios from "axios";
-import {put, takeEvery} from 'redux-saga/effects';
+import {put, takeEvery, delay} from 'redux-saga/effects';
+
+let tries = 0;
 
 function* forecastSaga(){
     yield takeEvery('FETCH_FORECAST', fetchForecast);
@@ -27,9 +29,20 @@ function* fetchForecast(action){
         // send observed weather data to reducer
         yield put({type: 'SET_OBSERVED', payload: past.data.properties});
 
+        //if everything worked, reset tries to 0:
+        yield tries = 0;
+
     } catch(err) {
         console.log('get forecast/observed error', err);
-        alert('National Weather Service API not responding. Refresh to retry');
+        // if there's an error, try above requests 5 more times with a delay
+        if (tries < 5) {
+            yield tries++;
+            yield delay(1000*tries); //exponential backoff: delay increases each time
+            yield put({ type: 'FETCH_FORECAST', action: action });
+        } else {
+            alert('National Weather Service API not responding. Refresh to retry');
+            yield tries = 0;
+        }
     }
 }
 
