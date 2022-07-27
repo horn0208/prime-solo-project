@@ -81,10 +81,25 @@ function AreaDetails(){
             }
         });
     }
+
+    // FOR PRESENTATION ONLY: If API won't respond with weather, click to send dummy weather info to reducers and display 
+    const fakeWeather =()=>{
+        dispatch({type: 'SET_FORECAST', payload: {
+            periods: [{
+                detailedForecast: "A chance of showers and thunderstorms before 10pm, then patchy fog and a slight chance of showers and thunderstorms between 10pm and 1am. Mostly cloudy. Low around 54, with temperatures rising to around 56 overnight. West wind around 5 mph. Chance of precipitation is 30%. New rainfall amounts less than a tenth of an inch possible.",
+                icon: "https://api.weather.gov/icons/land/night/tsra_hi,30/tsra_hi?size=medium",
+                name: "Tonight"
+            }]
+        }});
+        dispatch({type: 'SET_OBSERVED', payload:{
+            precipitationLast6Hours: {value: 0.1},
+            relativeHumidity: {value: 82.123}
+        }});
+    }
      
     return(
         <div className='mega-container'>
-            <div className='area-name'>
+            <div onClick={fakeWeather} className='area-name'>
                 <Typography variant='h5'>{name}</Typography>
             </div>
             
@@ -119,7 +134,7 @@ function AreaDetails(){
                     {/* if precip last 6 hours is null, show "none" */}
                     <Typography variant='body2'>Precip past 6hrs: {
                         !(observed.precipitationLast6Hours.value) ?
-                        <Typography component={'span'} variant='body2'>none</Typography>
+                        <Typography component={'span'} variant='body2'>none measured</Typography>
                         :
                         observed.precipitationLast6Hours.value   
                     }

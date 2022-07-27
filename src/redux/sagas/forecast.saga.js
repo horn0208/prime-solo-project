@@ -11,7 +11,7 @@ function* fetchForecast(action){
     try{
         console.log(action.payload);
         // get selected area data from db
-        const area = yield axios.get(`/api/areas/area/${action.payload}`);//changed from just action.payload
+        const area = yield axios.get(`/api/areas/area/${action.payload}`);
         console.log('area result', area.data);
         const data = area.data;
 
@@ -29,6 +29,7 @@ function* fetchForecast(action){
 
     } catch(err) {
         console.log('get forecast/observed error', err);
+        alert('National Weather Service API not responding. Refresh to retry');
     }
 }
 
