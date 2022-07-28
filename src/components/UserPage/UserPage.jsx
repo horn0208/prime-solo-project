@@ -35,10 +35,13 @@ function UserPage() {
        {/* map over areas and display */}
       <Stack 
         justifyContent="flex-start"
+        alignItems="center"
+        direction="column"
         spacing={1.5}>
         {areas.map(each =>{
           return (
             <div className='area-li' key={each.id} onClick={()=>seeDetails(each.id, each.area)}>
+              <img className='area-photo' src={each.photo} alt="climbing area image" />
               <Typography variant='button'>{each.area}</Typography>
             </div>
           );

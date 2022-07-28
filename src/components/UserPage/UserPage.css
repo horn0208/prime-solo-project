@@ -1,9 +1,12 @@
 .area-li{
     /* might change background color to MUI fuschia or something */
-    background-color: #5cffef;
-    padding: 10px 20px;
+    background-color: #5cffef56;
+    padding: 20px 20px;
     text-align: center;
     box-shadow: 0 4px 4px -2.5px rgb(64, 195, 238);
+    margin: 10px;
+    width: 250px;
+    border-radius: 2px;
 }
 
 .where-climb{
@@ -19,3 +22,4 @@
     border-radius: 2px;
     margin: 20px;
   }
+
