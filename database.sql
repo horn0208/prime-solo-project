@@ -28,20 +28,20 @@ CREATE TABLE "comments" (
 );
 
 --Data for climbing areas. For base mode, users cannot create/update/delete areas, only comments
-INSERT INTO areas (area, gridx, gridy, office, station) VALUES
-	('Sawmill Creek Dome', '121', '99', 'DLH', 'KMYZ'),
-	('Palisade Head', '119', '95', 'DLH', 'KTWM'),
-	('Taylors Falls', '127', '91', 'MPX', 'KROS'),
-	('Willow River', '126', '73', 'MPX', 'K21D'),
-	('He Mni Can', '133', '52', 'MPX', 'KRGK'),
-	('Devil''s Lake', '25', '79', 'MKX', 'KDLL'),
-	('Sandstone', '67', '38', 'DLH', 'K04W');
+INSERT INTO areas (area, gridx, gridy, office, station, photo) VALUES
+	('Sawmill Creek Dome', '121', '99', 'DLH', 'KMYZ', 'images/sawmill.jpeg'),
+	('Palisade Head', '119', '95', 'DLH', 'KTWM', 'images/palisade1.jpeg'),
+	('Taylors Falls', '127', '91', 'MPX', 'KROS', 'images/taylors1.jpeg'),
+	('Willow River', '126', '73', 'MPX', 'K21D', 'images/willow.jpeg'),
+	('He Mni Can', '133', '52', 'MPX', 'KRGK', 'images/redwing.jpeg'),
+	('Devil''s Lake', '25', '79', 'MKX', 'KDLL', 'images/devilslake.jpeg'),
+	('Sandstone', '67', '38', 'DLH', 'K04W', 'images/sandstone1.jpeg');
 	
 --Dummy data to make sure comments show up correctly
 INSERT INTO comments (date, comment, user_id, area_id) VALUES
 	('3/16/2021', 'Hiked through waist deep snow on the way in. Needs a few more weeks to melt!', '1', '1'),
 	('6/02/2021', 'Bugs are bad. Borfo the magnificent is itchy. Bring bug spray', '2', '1'),
-	('7/14/2022', 'Winter wall is blazing in the sun. Go to the shadyy side', '2', '5');
+	('7/14/2022', 'Winter wall is blazing in the sun. Go to the shady side', '2', '5');
 	
 --GET all areas
 SELECT * FROM areas ORDER BY "area" ASC;
