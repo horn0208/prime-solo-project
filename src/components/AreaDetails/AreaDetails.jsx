@@ -39,6 +39,8 @@ function AreaDetails(){
     const observed = useSelector((store) => store.observed);
 
     useEffect(()=>{
+        // scroll to top of page on load
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
         // set and display current area name from params
         setName(areaName);
         // send area id to saga to get comments
