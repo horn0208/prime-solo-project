@@ -16,7 +16,7 @@ WRDR is a full-stack app built with React and Redux-Saga which allows logged-in 
 
 ![Screenshot](/screenshots/screenshot-landing.png)
 ![Screenshot](/screenshots/screenshot-areas.png)
-![Screenshot](/screenshots/screenshot-detail.png)
+![Screenshot](/screenshots/screenshot-details.png)
 ![Screenshot](/screenshots/screenshot-add.png)
 ![Screenshot](/screenshots/screenshot-delete.png)
 
