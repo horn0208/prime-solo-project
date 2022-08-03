@@ -40,7 +40,7 @@ function* fetchForecast(action){
             yield delay(750*tries); //exponential backoff: delay increases each time
             yield put({ type: 'FETCH_FORECAST', action: action });
         } else {
-            // alert('National Weather Service API not responding. Refresh to retry');
+            alert('National Weather Service API not responding. Refresh to retry');
             yield tries = 0;
         }
     }
