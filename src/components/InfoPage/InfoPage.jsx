@@ -1,4 +1,6 @@
 import React from 'react';
+import Typography from '@mui/material/Typography';
+import image from './palisade2.jpeg';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -7,8 +9,16 @@ import React from 'react';
 
 function InfoPage() {
   return (
-    <div className="container">
-      <p>Info Page</p>
+    <div className="areas-container">
+      <Typography variant='h6'>
+        WRDR was built with: <br /> 
+        </Typography>
+        <Typography variant='body2'>
+        React, Redux, Redux-Saga, Express, Node.js, PostgreSQL, 
+        Material UI, and The National Weather Service API (https://api.weather.gov);
+      </Typography>
+      <br />
+      <img src={image} alt="" />
     </div>
   );
 }

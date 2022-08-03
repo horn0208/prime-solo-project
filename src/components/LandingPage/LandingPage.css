@@ -5,9 +5,10 @@ Grid
 
 
 .welcome-logo{
-  margin: 0px 16px;
+  margin: 0px 12px;
   font-family: 'Rubik Moonrocks', cursive;
-  font-size: 31px;
+  font-size: 32px;
+  text-align: center;
 }
 
 .welcome-txt{

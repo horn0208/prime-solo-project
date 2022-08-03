@@ -37,10 +37,10 @@ function* fetchForecast(action){
         // if there's an error, try above requests 5 more times with a delay
         if (tries < 5) {
             yield tries++;
-            yield delay(500*tries); //exponential backoff: delay increases each time
+            yield delay(750*tries); //exponential backoff: delay increases each time
             yield put({ type: 'FETCH_FORECAST', action: action });
         } else {
-            // alert('National Weather Service API not responding. Refresh to retry');
+            alert('National Weather Service API not responding. Refresh to retry');
             yield tries = 0;
         }
     }
